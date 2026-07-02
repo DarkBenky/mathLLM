@@ -25,7 +25,11 @@ def generateExpression():
         if np.random.rand() < probabilityOfOperator and i > 0 and i < numberOfTokens - 1 and expression[-1] not in OPERATORS:  # Ensure operators are not at the start or end
             expression += np.random.choice(OPERATORS)
         else:
-            expression += str(np.random.randint(0, 10))
+            # Prevent leading zeros: first digit of a number must be 1-9
+            if i == 0 or expression[-1] in OPERATORS:
+                expression += str(np.random.randint(1, 10))
+            else:
+                expression += str(np.random.randint(0, 10))
     result = str(int(eval(expression)))
     expression += "="
     return expression, result
