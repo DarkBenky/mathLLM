@@ -17,8 +17,8 @@ NA      [0] [0] [0] [0] [1]
 
 output will be feed back to input if output neuron for this is active (above 0.5) max 16 iterations
 
-        3   NA  NA  NA  NA        
-1       [0] [0] [0] [0] [0]
+        3   NA  NA  NA  NA      + iteration application output      
+1       [0] [0] [0] [0] [0]     [0.25]
 2       [0] [0] [1] [0] [0]
 3       [1] [0] [0] [0] [0]
 4       [0] [0] [0] [0] [0]
