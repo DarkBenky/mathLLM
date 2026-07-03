@@ -18,19 +18,20 @@ def tokenizeExpression(exp: str):
     return embedding
 
 def generateExpression():
-    numberOfTokens = np.random.randint(3, INPUT_SIZE // 2)
-    probabilityOfOperator = 0.3
-    expression = ""
-    for i in range(numberOfTokens):
-        if np.random.rand() < probabilityOfOperator and i > 0 and i < numberOfTokens - 1 and expression[-1] not in OPERATORS:  # Ensure operators are not at the start or end
-            expression += np.random.choice(OPERATORS)
+    num_numbers = np.random.randint(2, 3)
+    numbers = []
+    for _ in range(num_numbers):
+        if np.random.rand() < 0.5:
+            numbers.append(str(np.random.randint(1, 10)))
         else:
-            # Prevent leading zeros: first digit of a number must be 1-9
-            if i == 0 or expression[-1] in OPERATORS:
-                expression += str(np.random.randint(1, 10))
-            else:
-                expression += str(np.random.randint(0, 10))
-    result = str(int(eval(expression)))
+            numbers.append(str(np.random.randint(10, 100)))
+
+    expression = numbers[0]
+    for i in range(1, num_numbers):
+        op = np.random.choice(["+", "-"])
+        expression += op + numbers[i]
+
+    result = eval(expression)
     expression += "="
     return expression, result
 
